@@ -1,12 +1,14 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { resolve } from "path";
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import { resolve } from "path"
 
 export default defineConfig({
-  root: "sessionsoundtrack", // 👈 set the actual root
+  root: resolve(__dirname, "."), // stays at root
   plugins: [react()],
   build: {
-    outDir: "../dist", // 👈 output dir relative to new root
-    emptyOutDir: true, // clean old build files
+    outDir: "dist",
+    rollupOptions: {
+      input: resolve(__dirname, "index.html"), // explicitly define input
+    },
   },
-});
+})
